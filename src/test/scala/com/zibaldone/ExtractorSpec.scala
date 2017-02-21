@@ -53,10 +53,25 @@ class ExtractorSpec extends WordSpec with Matchers {
       }
       isAMatch shouldBe false
     }
+  }
 
-    "Compose because extends a function" in {
+  "PositiveNumberExtractor" should {
+    "match a positive number" in {
+      val isAMatch = 10 match {
+        case PositiveNumberExtractor(a) if (a == "Positive") => true
+        case _ => false
+      }
+      isAMatch shouldBe true
+    }
 
+    "NOT match a negative number" in {
+      val isAMatch = -1 match {
+        case PositiveNumberExtractor(_) => true
+        case _ => false
+      }
+      isAMatch shouldBe false
     }
   }
+
 
 }

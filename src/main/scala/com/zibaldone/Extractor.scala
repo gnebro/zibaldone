@@ -24,21 +24,15 @@ object CreditCardExtractor {
 }
 
 /**
-  * length extractor
+  * positive number extractor.
+  * An expractor is just a function called unapply from a type A to an Option[B]
+  * No relationship between A and B
   */
-object LengthExtractor {
+object PositiveNumberExtractor {
 
-  val Separator = "-"
-
-  def apply(part1: String, part2: String, part3: String, part4: String): String = {
-    part1+Separator+part2+Separator+part3+Separator+part4
+  def unapply(i: Int): Option[String] = {
+    if(i < 0) None
+    else Some("Positive")
   }
 
-  def unapply(card: String): Option[(String, String, String, String)] = {
-    val parts = card.split(Separator)
-    if(parts.length == 4
-      && parts.forall(p => p.length == 4 && p.forall(_.isDigit))){
-      Some((parts(0), parts(1), parts(2), parts(3)))
-    } else None
-  }
 }
