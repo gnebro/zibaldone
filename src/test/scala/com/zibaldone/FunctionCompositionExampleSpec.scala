@@ -49,13 +49,6 @@ class FunctionCompositionExampleSpec extends WordSpec with Matchers {
     }
   }
 
-  "composition examples" should {
-    "have no effect regardless of the order" in {
-      val composed =
-
-
-    }
-  }
 
 }
 
