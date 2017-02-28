@@ -34,8 +34,6 @@ class EitherExampleSpec extends WordSpec with Matchers {
         r <- eitherRight.right
       } yield r + l
 
-
-      println("@@@@@@@@@@@ ===> " + result)
     }
 
   }

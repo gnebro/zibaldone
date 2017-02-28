@@ -36,3 +36,33 @@ object PositiveNumberExtractor {
   }
 
 }
+
+/**
+  * This simple extractor, extracts the two parts of an email, the one one
+  * the left of '@' (user) and the one on the right (domain)
+  */
+object EmailExtractor {
+
+  def unapply(email: String): Option[(String, String)] = {
+    email.split("@").toList match {
+      case seq @ user :: domain :: Nil => Some((user, domain))
+      case _ => None
+    }
+  }
+}
+
+/**
+  * This extractor, extract the various part of the domain,
+  * assuming they are all separated by '.'  and uses unapplySeq
+  * returning an Option[List[_]]
+  */
+object DomainExtractor {
+
+  def unapplySeq(domain: String): Option[List[String]] = {
+
+    domain.split("""\.""").toList match {
+      case a @ h :: t if(a.size > 1) => Some(a)
+      case a => None
+    }
+  }
+}
